@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block navbar %}
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand">智能专家推荐系统</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/experts/list/1/">专家列表</a>
+       </li>
+
+      </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li id="fat-menu" class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">退出登录</a></li>
+              </ul>
+            </li>
+          </ul>
+    </nav>
+
+{% endblock %}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+
+   {% block content %}
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+
+        <div class="col-md-8">
+        <div class="text-center">
+            <h2 style="margin: 30px">{{ expert.expertName }}</h2>
+          </div>
+  <table class="table table-bordered">
+    <thead>
+          <tr>
+              <th class="text-center" width="15%">专家编号</th>
+            <td class="text-center" width="15%">{{ expert.expertID }}</td>
+               <th class="text-center" width="15%">管理单位</th>
+            <td class="text-center" width="20%">{{ expert.work_for }}</td>
+                <th class="text-center" width="15%">工作电话</th>
+              <td class="text-center" width="20%"></td>
+          </tr>
+          <tr>
+    <th class="text-center" width="15%">性别</th>
+            <td class="text-center" width="15%"></td>
+               <th class="text-center" width="15%">民族</th>
+            <td class="text-center" width="20%"></td>
+                <th class="text-center" width="15%">出生年月</th>
+              <td class="text-center" width="20%"></td>
+          </tr>
+            <tr>
+    <th class="text-center" width="15%">身份证号</th>
+            <td class="text-center" width="15%" colspan="2"></td>
+               <th class="text-center" width="15%">出生地</th>
+            <td class="text-center" width="20%" colspan="2"></td>
+            </tr>
+            <tr>
+    <th class="text-center" width="15%">最高学位</th>
+            <td class="text-center" width="15%"></td>
+               <th class="text-center" width="15%">文化程度</th>
+            <td class="text-center" width="20%"></td>
+                <th class="text-center" width="15%">海外经历</th>
+              <td class="text-center" width="20%"></td>
+          </tr>
+            <tr>
+    <th class="text-center" width="15%">是否院士</th>
+            <td class="text-center" width="15%"></td>
+               <th class="text-center" width="15%">是否博导</th>
+            <td class="text-center" width="20%"></td>
+                <th class="text-center" width="15%">技术职称</th>
+              <td class="text-center" width="20%"></td>
+          </tr>
+            <tr>
+    <th class="text-center" width="15%">职务</th>
+            <td class="text-center" width="15%" colspan="3"></td>
+               <th class="text-center" width="15%">党派</th>
+            <td class="text-center" width="20%"></td>
+          </tr>
+
+            <tr>
+    <th class="text-center" width="15%">毕业院校</th>
+            <td class="text-center" width="15%"></td>
+               <th class="text-center" width="15%">所学专业</th>
+            <td class="text-center" width="20%"></td>
+                <th class="text-center" width="15%">毕业年份</th>
+              <td class="text-center" width="20%"></td>
+          </tr>
+           <tr>
+              <th class="text-center" width="15%">科研关键字</th>
+              <td class="text-center" colspan="5">{{ expert.keywords }}</td>
+          </tr>
+           <tr>
+              <th class="text-center" width="15%">标准化协会</th>
+              <td class="text-center" colspan="5"></td>
+          </tr>
+
+           <tr>
+              <th class="text-center" width="15%">基金/计划</th>
+              <td class="text-center" colspan="5"></td>
+          </tr>
+           <tr>
+              <th class="text-center" width="15%">家庭地址</th>
+              <td class="text-center" colspan="3"></td>
+              <th class="text-center" width="15%">邮政编码</th>
+              <td class="text-center"></td>
+          </tr>
+           <tr>
+              <th class="text-center" width="15%">Email</th>
+              <td class="text-center" colspan="3"></td>
+              <th class="text-center" width="15%">工作电话</th>
+              <td class="text-center"></td>
+          </tr>
+           <tr>
+              <th class="text-center" width="15%">家庭电话</th>
+              <td class="text-center"></td>
+              <th class="text-center" width="15%">移动电话</th>
+              <td class="text-center"></td>
+
+              <th class="text-center" width="15%">传真电话</th>
+              <td class="text-center"></td>
+          </tr>
+           <tr>
+              <th class="text-center" width="15%">发表论文</th>
+              <td colspan="5">
+                  {% for paper in paper_list %}
+                      {{ paper.title }} <b>{{ paper.authorlist }}</b> {{ paper.pub_date }} <br/><br/>
+                  {% endfor %}
+              </td>
+          </tr>
+        <tr>
+            <th class="text-center" width="15%">社会关系</th>
+               <td  colspan="5">暂无</td>
+
+          </tr>
+
+</table>
+
+      </div>
+        <div class="col-md-4">
+          
+          <p class="form-control-static" style="margin-top:20px;">
+          <textarea class="form-control" rows="3" placeholder="请输入待评审项目关键词（用空格隔开）"  style="margin:10px" id="keywords"></textarea>
+          <textarea class="form-control" rows="3" placeholder="请输入项目参与人的姓名（用空格隔开）" style="margin:10px" id="authorsID"></textarea>
+          <button type="submit" class="btn btn-primary" style="margin: 10px" onclick="getmatch()">查看匹配度</button>
+          </p>
+          <p class="form-control-static">
+          <label class="control-label" style="margin:10px" id="matchresult">配度：90%</label>
+          </p>
+       </div>
+     </div>
+    </div>
+       <script type="text/javascript">
+       function getmatch(){
+           keywords = $("#keywords").val()
+           authorsID = $("#authorsID").val()
+           $.get("/match/getmatch/{{ expert.expertID }}",{keywords:keywords,authorsID:authorsID},function(response){
+            $("#matchresult").html(response)
+           })
+       }
+       </script>
+   {% endblock %}

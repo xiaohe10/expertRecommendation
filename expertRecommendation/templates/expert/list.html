@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block navbar %}
+    <div class="navbar-header">
+    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand">智能专家推荐系统</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">专家列表</a>
+       </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="fat-menu" class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">退出登录</a></li>
+              </ul>
+            </li>
+          </ul>
+    </nav>
+{% endblock %}
+
+        {% block content %}
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="table-responsive">
+          <div class="text-center">
+
+          <h1>专家列表</h1>
+
+          </div>
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><input type="checkbox">全选</th>
+            <th>专家编号</th>
+            <th>专家姓名</th>
+            <th>管理单位</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if expertlist %}
+            {% for expert in expertlist %}
+          <tr>
+            <td>  <input type="checkbox"></td>
+            <td>{{ expert.expertID}}</td>
+            <td><a href="/experts/detail/{{ expert.expertID}}/">{{ expert.expertName }}</a></td>
+            <td>{{ expert.work_for }}</td>
+          </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+    </div>
+     <div class="text-center">
+        <ul class="pagination">
+          <li><a href="/experts/list/{{ previous_page }}/">«</a></li>
+          <li class="disabled"><a href="/experts/list/{{ page1 }}/">{{ page1 }}</a></li>
+          <li><a href="/experts/list/{{ page2 }}/">{{ page2 }}</a></li>
+          <li><a href="/experts/list/{{ page3 }}/">{{ page3 }}</a></li>
+          <li><a href="/experts/list/{{ page4 }}/">{{ page4 }}</a></li>
+          <li><a href="/experts/list/{{ page5 }}/">{{ page5 }}</a></li>
+          <li><a href="/experts/list/{{ next_page }}/">»</a></li>
+        </ul>
+      </div>
+     </div>
+        {% endblock %}

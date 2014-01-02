@@ -9,6 +9,7 @@ from django.shortcuts import render_to_response
 @csrf_protect
 
 def register(request):
+    message = 'zhuanjiaku'
     if request.method == 'POST':
         validcode = request.POST['validcode']
         if(validcode != 'zhuanjiaku'):
@@ -31,16 +32,18 @@ def logout(request):
 @csrf_protect
 def login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect("/experts")
+        return HttpResponseRedirect("/experts/list/1/")
     if request.method == 'POST':
         username = request.POST.get('username', '')
+        print username
         password = request.POST.get('password', '')
+        print password
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             # Correct password, and the user is marked "active"
             auth.login(request, user)
             # Redirect to a success page.
-            return HttpResponseRedirect("/experts")
+            return HttpResponseRedirect("/experts/list/1/")
         else:
             # Show an error page
             return render(request,"account/login.html",{'message':'login fail'})

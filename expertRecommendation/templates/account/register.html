@@ -1,17 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<h1>Create an account</h1>
+{% extends "base.html" %}
 
-  <form action="" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      valid code<input type="text" name="validcode"/></br>
-      <input type="submit" value="Create the account">
+        {% block navbar %}
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">专家推荐系统</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/" class="navbar-brand">登录</a>
+        </li>
+      </ul>
+    </nav>
+
+{% endblock %}
+
+
+        {% block content %}
+
+   <form class="form-signin" role="form" method="post">
+        <h2 class="form-signin-heading">注册新账号</h2>
+      <label for="id_username">用户名：</label> <input class="form-control" placeholder="用户名" type="text">
+<label for="id_password1">密码：</label> <input class="form-control" placeholder="密码" type="password"></p>
+<label for="id_password2">确认密码：</label> <input class="form-control" placeholder="确认密码" type="password">
+      <label for="id_password2">内部验证码：</label> <input class="form-control" placeholder="内部验证码" type="text" name="validcode"><br>
+      <input class="btn btn-lg btn-primary btn-block"  type="submit" value="注册新账户">
   </form>
-<a href="/">login</a>
-</body>
-</html>
+
+{% endblock %}

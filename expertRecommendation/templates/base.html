@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>专家推荐系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/style/jumbotron.css" rel="stylesheet">
+    <link href="/static/style/docs.css" rel="stylesheet">
+    <link href="/static/style/pretty.css" rel="stylesheet">
+    <link href="/static/style/signin.css" rel="stylesheet">
+
+
+  </head>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+
+      {% block navbar %}
+      {% endblock %}
+
+  </div>
+</header>
+
+    {% block content %}
+
+    {% endblock %}
+
+<footer class="bs-footer" role="contentinfo">
+      <div class="container">
+
+        <p>Powered by School of Software,Tsinghua University.</p>
+
+      </div>
+    </footer>
+
+ <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="/static/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+  </body>
+
+
+</html>

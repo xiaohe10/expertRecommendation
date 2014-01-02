@@ -1,18 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-{% if message %}
-    {{ message }}
-{% endif %}
-<form action="/" method="POST">
-    {% csrf_token %}
-    username:<input name="username" type="text"/></br>
-    password:<input name="password" type="password"/></br>
-    <input type="submit" value="login"/>
-</form>
-<a href="/register">register</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block navbar %}
+        <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">专家推荐系统</a>
+        </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <a href="/register" class="navbar-brand navbar-right">注册账号</a>
+    </nav>
+{% endblock %}
+        {% block content %}
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h1>智能专家推荐系统</h1>
+        <p>让您的专家推荐工作更加有趣！</p>
+      </div>
+    </div>
+    <div class="container">
+
+      <form class="form-signin" role="form" method="post">
+          {% csrf_token %}
+        <h2 class="form-signin-heading">请登录:</h2>
+          {% if message %}
+          {{ message }}
+          {% endif %}
+        <input name="username" type="text" class="form-control" placeholder="用户名" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="密码" required>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="login">登录</button>
+      </form>
+     </div>
+    </div>
+        {% endblock %}
