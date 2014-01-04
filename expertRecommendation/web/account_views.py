@@ -1,3 +1,4 @@
+#-*-coding:UTF-8-*-
 # Create your views here.
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -9,11 +10,11 @@ from django.shortcuts import render_to_response
 @csrf_protect
 
 def register(request):
-    message = 'zhuanjiaku'
+    message=''
     if request.method == 'POST':
         validcode = request.POST['validcode']
         if(validcode != 'zhuanjiaku'):
-            message = 'invalid code'
+            message = '验证码错误，应该是 zhuanjiaku'
         form = UserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()

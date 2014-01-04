@@ -77,7 +77,7 @@ def getmatch(request,expertID):
                 friend_str = paper.authorlist.encode('utf-8')
                 friend_list =   friend_str.split(',')
                 expert_friend_list.extend(friend_list)
-            print expert_friend_list
+            #print expert_friend_list
             match_degree = 0
             match_count = 0
             for k1 in keyword_list:
@@ -85,7 +85,10 @@ def getmatch(request,expertID):
                 match_count += 1
                 for k2 in expert_keyword_list:
                     k2 = k2.encode('utf-8')
-                    match = Levenshtein.ratio(k1,k2)
+                    #match = Levenshtein.ratio(k1,k2)
+                    match = 0
+                    if(k1  == k2):
+                        match = 1
                     if(match > max_match):
                         max_match = match
                 match_degree += max_match
@@ -96,9 +99,13 @@ def getmatch(request,expertID):
                 for a2 in expert_friend_list:
                     if(a1 == a2):
                         is_match = True
+                        print a1
+                        print a2
                 if is_match:
                     relative_degree += 1
+                    print relative_degree
                 relative_count += 1
+                print relative_count
 
             if match_count == 0:
                 return HttpResponse("没有关键词")
@@ -106,9 +113,9 @@ def getmatch(request,expertID):
                 relative_degree = 0
                 relative_count = 1
             else:
-                match_degree = match_degree/match_count*100
-                relative_degree = relative_degree/relative_count*100
-                return HttpResponse("匹配度：{0}%<br/>相关度：{1}%<br/>推荐度：{2}%".format(match_degree,relative_degree,match_degree-relative_degree))
+                match_degree = float(match_degree)/float(match_count)*100
+                relative_degree = float(relative_degree)/float(relative_count)*100
+                return HttpResponse("匹配度：{0}%<br/>排斥度：{1}%<br/>推荐度：{2}%".format(match_degree,relative_degree,match_degree-relative_degree))
         except:
             return HttpResponse("参数错误")
     else:
