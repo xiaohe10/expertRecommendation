@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response
+from django.contrib.auth.models import User
 @csrf_protect
 
 def register(request):
@@ -19,6 +20,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
             return HttpResponseRedirect("/")
+        user = auth.get_user_model()
     else:
         form = UserCreationForm()
     return render(request,"account/register.html", {
@@ -47,6 +49,6 @@ def login(request):
             return HttpResponseRedirect("/experts/list/1/")
         else:
             # Show an error page
-            return render(request,"account/login.html",{'message':'login fail'})
+            return render(request,"account/login.html",{'message':'用户名或密码错误'})
     else:
         return render(request,"account/login.html")

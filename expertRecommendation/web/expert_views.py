@@ -13,7 +13,7 @@ def list_experts(request,page):
     user = request.user
     if request.user.is_authenticated():
         page = int(page)
-        expertlist = Expert.objects.all().order_by('expertID')[(page-1)*100:page*100]
+        expertlist = Expert.objects.exclude(keywords='').order_by('expertID')[(page-1)*100:page*100]
         if(page > 0):
             previous_page = page - 1
             page1 = page
