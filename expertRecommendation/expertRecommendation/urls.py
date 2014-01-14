@@ -17,6 +17,8 @@ urlpatterns = patterns('',
     url(r'^experts/search$',search_expert),
     url(r'^experts/detail/(\d+)/$',detail),
     url(r'^match/getmatch/(\d+)/$',getmatch),
+    url(r'^match/groupmatch',match_view),
+    url(r'^match/getgroupmatch',group_match),
     url(r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT},name='static'),
     # Examples:
     # url(r'^$', 'expertRecommendation.views.home', name='home'),

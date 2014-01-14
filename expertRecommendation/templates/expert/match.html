@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block navbar %}
+    <div class="navbar-header">
+    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">智能专家推荐系统</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li >
+          <a href="/">专家列表</a>
+                        </li>
+          <li class="active">
+          <a href="/match/groupmatch">群组匹配</a>
+       </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="fat-menu" class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">退出登录</a></li>
+              </ul>
+            </li>
+          </ul>
+    </nav>
+{% endblock %}
+
+        {% block content %}
+
+    <div class="container">
+
+        <form class="form-horizontal" role="form" style="margin-top: 50px" method="post" action="/match/getgroupmatch">
+            {% csrf_token %}
+            <h3>项目数量</h3>
+            <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "itemnumber" placeholder="项目个数" required>
+            </div>
+          </div>
+
+            <h3>项目一</h3>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "keyword1" placeholder="关键词（以空格隔开）" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "author1" placeholder="作者（以空格隔开）" required>
+            </div>
+          </div>
+            <h3>项目二</h3>
+            <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "keyword2" placeholder="关键词（以空格隔开）" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "author2" placeholder="作者（以空格隔开）" required>
+            </div>
+          </div>
+            <h3>项目三</h3>
+            <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "keyword3" placeholder="关键词（以空格隔开）" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "author3" placeholder="作者（以空格隔开）" required>
+            </div>
+          </div>
+            <h3>项目四</h3>
+            <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "keyword4" placeholder="关键词（以空格隔开）" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name = "author4" placeholder="作者（以空格隔开）" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">匹配</button>
+            </div>
+          </div>
+        </form>
+     </div>
+
+        {% endblock %}
